@@ -24,15 +24,15 @@ public class CalculationTest
     }
     @Test
     public void testMult(){
-        assertEquals(6, calc.sub(2,3));
+        assertEquals(6, calc.mul(2,3));
     }
     @Test
     public void testDiv(){
-        assertEquals(2, calc.sub(6,3));
+        assertEquals(2, calc.div(6,3));
     }
     @Test
     public void testMod(){
-        assertEquals(1, calc.sub(11,10));
+        assertEquals(1, calc.mod(11,10));
     }
 
 }
