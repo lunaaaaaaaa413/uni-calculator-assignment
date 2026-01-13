@@ -13,9 +13,10 @@ import org.junit.jupiter.api.Test;
  */
 public class CalculationTest
 {
+    private final Calculation calc = new Calculation();
     @Test
    public void testAdd(){ 
-       //write your testing code here
+      assertEquals(2, calc.add(1, 1));
     }
 
 }
