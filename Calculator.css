@@ -1,0 +1,42 @@
+#GridPaneStyle {
+    -fx-grid-lines-visible: false;
+    -fx-hgap: 5;
+    -fx-vgap: 10;
+    -fx-padding: 10;
+}
+
+#ButtonsPaneStyle {
+    -fx-pref-columns: 6;
+    -fx-pref-tile-width: 75;
+    -fx-hgap: 5;
+    -fx-vgap: 5;
+}
+
+/* affects all Buttons */
+.button {
+    -fx-font: bold 20pt "courier new";
+}
+
+/* affects all TextFields */
+.text-field {
+    -fx-font: bold 14pt "Courier New"; /* or any font size you want */
+}
+
+
+/* affects all labels */
+.label {
+    -fx-font: bold 14pt "Courier New";  /* font size and weight */
+    -fx-text-fill: darkblue;            /* text color */
+}
+
+/* Example for a specific label by ID */
+#laResultStatus {
+    -fx-font: bold 14pt "Courier New";
+    -fx-text-fill: darkgreen;
+}
+
+#laCurrentOperator {
+    -fx-font: bold 14pt "Courier New";
+    -fx-text-fill: darkred;
+}
+
