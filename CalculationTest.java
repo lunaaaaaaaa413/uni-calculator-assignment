@@ -18,5 +18,21 @@ public class CalculationTest
    public void testAdd(){ 
       assertEquals(2, calc.add(1, 1));
     }
+    @Test
+    public void testSub(){
+        assertEquals(3, calc.sub(6,3));
+    }
+    @Test
+    public void testMult(){
+        assertEquals(6, calc.sub(2,3));
+    }
+    @Test
+    public void testDiv(){
+        assertEquals(2, calc.sub(6,3));
+    }
+    @Test
+    public void testMod(){
+        assertEquals(1, calc.sub(11,10));
+    }
 
 }
