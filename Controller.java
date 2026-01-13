@@ -16,6 +16,15 @@ public class Controller{
             case "+":
                 model.doAdd();
                 break;
+            case "-":
+                model.doSub();
+                break;
+            case "×":
+                model.doMul();
+                break;
+            case "÷":
+                model.dodiv();
+                break;
             case "%":
                 model.doModulo();
                 break;

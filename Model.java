@@ -31,6 +31,51 @@ public class Model {
         }
         update();
     }
+    void doSub(){
+        currentOperator = "-";
+        try{
+            int num1 = Integer.parseInt(view.tfNum1.getText().trim());
+            int num2 = Integer.parseInt(view.tfNum2.getText().trim());
+            int resultNumber = calculation.sub(num1,num2);
+            result = resultNumber + "";
+            resultStatus = "= ";
+        }
+        catch(Exception e){
+            resultStatus = "Result will appear below";
+            result = "Invalid input: must be whole numbers";
+        }
+        update();
+    }
+    void doMul(){
+        currentOperator = "×";
+        try{
+            int num1 = Integer.parseInt(view.tfNum1.getText().trim());
+            int num2 = Integer.parseInt(view.tfNum2.getText().trim());
+            int resultNumber = calculation.mul(num1,num2);
+            result = resultNumber + "";
+            resultStatus = "= ";
+        }
+        catch(Exception e){
+            resultStatus = "Result will appear below";
+            result = "Invalid input: must be whole numbers";
+        }
+        update();
+    }
+    void dodiv(){
+        currentOperator = "÷";
+        try{
+            int num1 = Integer.parseInt(view.tfNum1.getText().trim());
+            int num2 = Integer.parseInt(view.tfNum2.getText().trim());
+            int resultNumber = calculation.div(num1,num2);
+            result = resultNumber + "";
+            resultStatus = "= ";
+        }
+        catch(Exception e){
+            resultStatus = "Result will appear below";
+            result = "Invalid input: must be whole numbers";
+        }
+        update();
+    }
     void doModulo(){
         currentOperator = "%";
         try{
