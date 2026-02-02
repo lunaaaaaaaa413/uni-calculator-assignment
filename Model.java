@@ -5,6 +5,9 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+
+import java.util.ArrayList;
+
 public class Model {
     
     Calculation calculation; // Model uses the business class Calculation - which does the math
@@ -16,6 +19,20 @@ public class Model {
     private String resultStatus;    // Status indicator (e.g., "Result will appear below" or "=") for the View
     private String result;          // Calculation Result or failure message for the View
 
+    // A nested class used to store the history of calculations
+    class History {
+        ArrayList<Integer> firstNum = new ArrayList<Integer>();
+        ArrayList<Integer> secondNum = new ArrayList<Integer>();
+        ArrayList<String> operator = new ArrayList<String>();
+
+        void new_entry(int one, int two, String operator){
+            this.firstNum.add(one);
+            this.secondNum.add(two);
+            this.operator.add(operator);
+        }
+    }
+    History History = this.new History();
+
     void doAdd(){
         currentOperator = "+";
         try{
@@ -24,6 +41,7 @@ public class Model {
             int resultNumber = calculation.add(num1,num2);
             result = resultNumber + "";
             resultStatus = "= ";
+            History.new_entry(num1, num2, "+");
         }
         catch(Exception e){
             resultStatus = "Result will appear below";

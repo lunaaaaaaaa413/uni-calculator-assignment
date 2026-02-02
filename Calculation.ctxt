@@ -8,4 +8,6 @@ comment3.params=a\ b
 comment3.target=int\ mul(int,\ int)
 comment4.params=a\ b
 comment4.target=int\ div(int,\ int)
-numComments=5
+comment5.params=a\ b
+comment5.target=int\ mod(int,\ int)
+numComments=6
