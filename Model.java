@@ -57,6 +57,7 @@ public class Model {
             int resultNumber = calculation.sub(num1,num2);
             result = resultNumber + "";
             resultStatus = "= ";
+            History.new_entry(num1, num2, "-");
         }
         catch(Exception e){
             resultStatus = "Result will appear below";
@@ -72,6 +73,7 @@ public class Model {
             int resultNumber = calculation.mul(num1,num2);
             result = resultNumber + "";
             resultStatus = "= ";
+            History.new_entry(num1, num2, "×");
         }
         catch(Exception e){
             resultStatus = "Result will appear below";
@@ -87,6 +89,7 @@ public class Model {
             int resultNumber = calculation.div(num1,num2);
             result = resultNumber + "";
             resultStatus = "= ";
+            History.new_entry(num1, num2, "÷");
         }
         catch(Exception e){
             resultStatus = "Result will appear below";
@@ -102,6 +105,7 @@ public class Model {
             int resultNumber = calculation.mod(num1,num2);
             result = resultNumber + "";
             resultStatus = "= ";
+            History.new_entry(num1, num2, "%");
         }
         catch(Exception e){
             resultStatus = "Result will appear below";
