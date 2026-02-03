@@ -35,4 +35,7 @@ public class Controller{
             default: model.unimplementedOperation(action);
         }
     }
+
+    void historyForwards(){model.History.navigate_history(1);}
+    void historyBackwards(){model.History.navigate_history(-1);}
 }

@@ -14,4 +14,6 @@ comment6.params=currentOperator
 comment6.target=void\ unimplementedOperation(java.lang.String)
 comment7.params=
 comment7.target=void\ update()
-numComments=8
+comment8.params=num1\ num2\ result
+comment8.target=void\ history_update(int,\ int,\ int)
+numComments=9

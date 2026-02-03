@@ -62,20 +62,39 @@ public class View {
         for(String text: operatorSymbols){
             Button btn = new Button(text);
             buttonPane.getChildren().add(btn);
-            btn.setOnAction(this::buttonClick); //Sets the action to be performed (event handler) when the button is clicked.
+            btn.setOnAction(this::operatorButtonClick); //Sets the action to be performed (event handler) when the button is clicked.
         } //this:: buttonClick - Refers to the current object of the class (View here) that defines buttonClick.
         
         gridPane.add(buttonPane,1,6);
+
+        TilePane historyButtonPane = new TilePane();
+        
+        Button historyBackwards = new Button("<");
+        historyButtonPane.getChildren().add(historyBackwards);
+        historyBackwards.setOnAction(this::historyButtonClick);
+        
+        Button historyForwards = new Button(">");
+        historyButtonPane.getChildren().add(historyForwards);
+        historyForwards.setOnAction(this::historyButtonClick);
+        
+        gridPane.add(historyButtonPane,1,7);
+
         Scene scene = new Scene(gridPane,W,H);
         scene.getStylesheets().add("Calculator.css"); // tell the app to use our css
         window.setScene(scene);
         window.show();
     }
     
-
+    private void historyButtonClick(ActionEvent event){
+        Button btn = (Button) event.getSource();
+        if (controller != null) {
+            if (btn.getText() == ">"){controller.historyForwards(); }
+            else{controller.historyBackwards();}
+        }
+    }
     // This method is called when a button is clicked
     // It fetches the text on the button and passes it to the controller's doCalculate method
-    private void buttonClick(ActionEvent event){
+    private void operatorButtonClick(ActionEvent event){
         // this line asks the event to provide the actual Button object that was clicked
         Button btn = (Button) event.getSource();
         if (controller != null){
@@ -88,7 +107,12 @@ public class View {
     void update(String currentOperator, String resultStatus, String result){       
         laCurrentOperator.setText(currentOperator);
         laResultStatus.setText(resultStatus);
-        tfResult.setText(result);    
+        tfResult.setText(result);
+    }
+    void history_update(int num1, int num2, int result){
+        tfNum1.setText(num1 + "");
+        tfNum2.setText(num2 + "");
+        tfResult.setText(result + "");
     }
 }
 
