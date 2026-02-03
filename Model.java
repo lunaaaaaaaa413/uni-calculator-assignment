@@ -33,12 +33,13 @@ public class Model {
             this.firstNum.add(one);
             this.secondNum.add(two);
             this.result.add(result);
-            counter = firstNum.size();
+            counter = firstNum.size() - 1; // we subtract 1 here and on line 41 because the size is the true number of entries however we need the counter to refer to an index
+                                           // and indexes start counting from zero, TODO: try and make this more clear / concise
         }
 
         void navigate_history(int i){
             if (i == 1){
-                if (counter < firstNum.size()) {
+                if (counter < firstNum.size() - 1) {
                     counter++;
                     history_update(firstNum.get(counter), secondNum.get(counter), result.get(counter));
                 }
