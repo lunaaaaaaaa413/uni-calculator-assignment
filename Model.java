@@ -33,8 +33,8 @@ public class Model {
             this.firstNum.add(one);
             this.secondNum.add(two);
             this.result.add(result);
-            counter = firstNum.size() - 1; // we subtract 1 here and on line 41 because the size is the true number of entries however we need the counter to refer to an index
-                                           // and indexes start counting from zero, TODO: try and make this more clear / concise
+            // Reset the user to the present if they are looking through their history
+            counter = firstNum.size() - 1; // we subtract 1 here and on line 41 because the size function counts from 1 but counter needs to be a valid index and indexes count from 0
         }
 
         void navigate_history(int i){
