@@ -109,10 +109,12 @@ public class View {
         laResultStatus.setText(resultStatus);
         tfResult.setText(result);
     }
-    void history_update(int num1, int num2, int result){
+    void history_update(int num1, int num2, int result, String operator){
         tfNum1.setText(num1 + "");
         tfNum2.setText(num2 + "");
         tfResult.setText(result + "");
+        
+        laCurrentOperator.setText(operator);
     }
 }
 

@@ -26,13 +26,15 @@ public class Model {
     class History {
         ArrayList<Integer> firstNum = new ArrayList<Integer>();
         ArrayList<Integer> secondNum = new ArrayList<Integer>();
+        ArrayList<String> operator = new ArrayList<String>();
         ArrayList<Integer> result = new ArrayList<Integer>();
 
         int counter = 0; // this variable is used to track where in history we are when the user is scrubbing through their history
-        void new_entry(int one, int two, int result){
+        void new_entry(int one, int two, int result, String operator){
             this.firstNum.add(one);
             this.secondNum.add(two);
             this.result.add(result);
+            this.operator.add(operator);
             // Reset the user to the present if they are looking through their history
             counter = firstNum.size() - 1; // we subtract 1 here and on line 41 because the size function counts from 1 but counter needs to be a valid index and indexes count from 0
         }
@@ -41,12 +43,12 @@ public class Model {
             if (i == 1){
                 if (counter < firstNum.size() - 1) {
                     counter++;
-                    history_update(firstNum.get(counter), secondNum.get(counter), result.get(counter));
+                    history_update(firstNum.get(counter), secondNum.get(counter), result.get(counter), operator.get(counter));
                 }
             } else if (i == -1){
                 if (counter > 0) {
                     counter--;
-                    history_update(firstNum.get(counter), secondNum.get(counter), result.get(counter));
+                    history_update(firstNum.get(counter), secondNum.get(counter), result.get(counter), operator.get(counter));
                 }
             }
         }
@@ -61,7 +63,7 @@ public class Model {
             int resultNumber = calculation.add(num1,num2);
             result = resultNumber + "";
             resultStatus = "= ";
-            History.new_entry(num1, num2, resultNumber);
+            History.new_entry(num1, num2, resultNumber, currentOperator);
         }
         catch(Exception e){
             resultStatus = "Result will appear below";
@@ -77,7 +79,7 @@ public class Model {
             int resultNumber = calculation.sub(num1,num2);
             result = resultNumber + "";
             resultStatus = "= ";
-            History.new_entry(num1, num2, resultNumber);
+            History.new_entry(num1, num2, resultNumber, currentOperator);
         }
         catch(Exception e){
             resultStatus = "Result will appear below";
@@ -93,7 +95,7 @@ public class Model {
             int resultNumber = calculation.mul(num1,num2);
             result = resultNumber + "";
             resultStatus = "= ";
-            History.new_entry(num1, num2, resultNumber);
+            History.new_entry(num1, num2, resultNumber, currentOperator);
         }
         catch(Exception e){
             resultStatus = "Result will appear below";
@@ -109,7 +111,7 @@ public class Model {
             int resultNumber = calculation.div(num1,num2);
             result = resultNumber + "";
             resultStatus = "= ";
-            History.new_entry(num1, num2, resultNumber);
+            History.new_entry(num1, num2, resultNumber, currentOperator);
         }
         catch(Exception e){
             resultStatus = "Result will appear below";
@@ -125,7 +127,7 @@ public class Model {
             int resultNumber = calculation.mod(num1,num2);
             result = resultNumber + "";
             resultStatus = "= ";
-            History.new_entry(num1, num2, resultNumber);
+            History.new_entry(num1, num2, resultNumber, currentOperator);
         }
         catch(Exception e){
             resultStatus = "Result will appear below";
@@ -144,7 +146,7 @@ public class Model {
     private void update(){
         view.update(currentOperator,resultStatus, result);
     }
-    private void history_update(int num1, int num2, int result){
-        view.history_update(num1, num2, result);
+    private void history_update(int num1, int num2, int result, String operator){
+        view.history_update(num1, num2, result, operator);
     }
 }
