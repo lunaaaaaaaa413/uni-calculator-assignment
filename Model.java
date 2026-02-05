@@ -33,7 +33,13 @@ public class Model {
         boolean histFileExists = true;
 
         int counter = 0; // this variable is used to track where in history we are when the user is scrubbing through their history
+        
+        // in most cases we want to save to disk so i've used method overloading to make that the default option
         void new_entry(int one, int two, int result, String operator){
+            new_entry(one, two, result, operator, true); 
+        }
+        
+        void new_entry(int one, int two, int result, String operator, boolean writeToDisk){
             this.firstNum.add(one);
             this.secondNum.add(two);
             this.result.add(result);
@@ -41,14 +47,15 @@ public class Model {
             
             // Reset the user to the present if they are looking through their history
             counter = firstNum.size() - 1; // we subtract 1 here and on line 41 because the size function counts from 1 but counter needs to be a valid index and indexes count from 0
-
-            try {
-                // TODO: limit history entries
-                FileWriter histFile = new FileWriter("history.txt", true); // the true here stops filewriter from overwriting the content in history.txt
-                histFile.write(String.valueOf(one) + " " + String.valueOf(two) + " " + String.valueOf(result) + " " + operator + "\n");
-                histFile.close();
-            } catch (Exception e) {
-                // TODO: what do i put here
+            if (writeToDisk){
+                try {
+                    // TODO: limit history entries
+                    FileWriter histFile = new FileWriter("history.txt", true); // the true here stops filewriter from overwriting the content in history.txt
+                    histFile.write(String.valueOf(one) + " " + String.valueOf(two) + " " + String.valueOf(result) + " " + operator + "\n");
+                    histFile.close();
+                } catch (Exception e) {
+                    // TODO: what do i put here
+                }
             }
         }
 
@@ -74,7 +81,7 @@ public class Model {
                     while (histFileRead.hasNextLine()){
                         String data = histFileRead.nextLine();
                         String[] split = data.split(" ");
-                        new_entry(Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]), split[3]);
+                        new_entry(Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]), split[3], false);
                     }
                 } catch(Exception e) {
 
