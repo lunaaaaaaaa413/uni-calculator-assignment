@@ -9,6 +9,8 @@
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 public class Model {
     
@@ -36,12 +38,14 @@ public class Model {
             this.secondNum.add(two);
             this.result.add(result);
             this.operator.add(operator);
+            
             // Reset the user to the present if they are looking through their history
             counter = firstNum.size() - 1; // we subtract 1 here and on line 41 because the size function counts from 1 but counter needs to be a valid index and indexes count from 0
 
             try {
+                // TODO: limit history entries
                 FileWriter histFile = new FileWriter("history.txt", true); // the true here stops filewriter from overwriting the content in history.txt
-                histFile.write(one + two + result + operator + "\n");
+                histFile.write(String.valueOf(one) + " " + String.valueOf(two) + " " + String.valueOf(result) + " " + operator + "\n");
                 histFile.close();
             } catch (Exception e) {
                 // TODO: what do i put here
@@ -65,7 +69,17 @@ public class Model {
         public History(){
             // create history.txt if it does not exist
             File h = new File("history.txt");
-            if (!h.exists()){
+            if (h.exists()){
+                try (Scanner histFileRead = new Scanner(h)){
+                    while (histFileRead.hasNextLine()){
+                        String data = histFileRead.nextLine();
+                        String[] split = data.split(" ");
+                        new_entry(Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]), split[3]);
+                    }
+                } catch(Exception e) {
+
+                }
+            } else{
                 try{
                     h.createNewFile();
                 } catch(Exception e) {
