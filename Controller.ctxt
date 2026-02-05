@@ -1,10 +1,13 @@
 #BlueJ class context
 comment0.target=Controller
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Controller\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Passes\ commands\ from\ the\ view\ class\ to\ the\ model.\r\n
 comment1.params=action
 comment1.target=void\ doCalculate(java.lang.String)
+comment1.text=\r\n\ Tells\ the\ model\ to\ run\ a\ calculation.\r\n
 comment2.params=
 comment2.target=void\ historyForwards()
+comment2.text=Tells\ the\ model\ to\ step\ forwards\ in\ history
 comment3.params=
 comment3.target=void\ historyBackwards()
+comment3.text=Tells\ the\ model\ to\ step\ backwards\ in\ history
 numComments=4

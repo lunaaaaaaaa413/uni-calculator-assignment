@@ -1,15 +1,15 @@
 
 /**
- * Write a description of class Controller here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Passes commands from the view class to the model.
  */
 public class Controller{
     
     Model model; //Controller talks to Model
     
     // Bridge method: called by the View to delegate respomsibilites to Model.
+    /**
+     * Tells the model to run a calculation.
+     */
     void doCalculate(String action){
         
         switch(action){
@@ -35,7 +35,8 @@ public class Controller{
             default: model.unimplementedOperation(action);
         }
     }
-
+    /**Tells the model to step forwards in history */
     void historyForwards(){model.History.navigate_history(1);}
+    /**Tells the model to step backwards in history */
     void historyBackwards(){model.History.navigate_history(-1);}
 }

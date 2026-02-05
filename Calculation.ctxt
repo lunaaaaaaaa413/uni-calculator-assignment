@@ -1,13 +1,19 @@
 #BlueJ class context
 comment0.target=Calculation
+comment0.text=\r\n\ Handles\ the\ calculation\ logic\ of\ the\ program.\r\n
 comment1.params=a\ b
 comment1.target=int\ add(int,\ int)
+comment1.text=\r\n\ Adds\ two\ numbers\ together.\r\n
 comment2.params=a\ b
 comment2.target=int\ sub(int,\ int)
+comment2.text=\r\n\ Subtracts\ one\ number\ from\ another.\r\n
 comment3.params=a\ b
 comment3.target=int\ mul(int,\ int)
+comment3.text=\r\n\ Multiplies\ one\ number\ by\ another.\r\n
 comment4.params=a\ b
 comment4.target=int\ div(int,\ int)
+comment4.text=\r\n\ Divides\ one\ number\ by\ another.\r\n
 comment5.params=a\ b
 comment5.target=int\ mod(int,\ int)
+comment5.text=\r\n\ Returns\ the\ remainder\ after\ one\ number\ is\ divided\ by\ another.\r\n
 numComments=6

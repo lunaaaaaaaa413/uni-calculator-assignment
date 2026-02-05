@@ -3,20 +3,18 @@ import javafx.stage.Stage;
 
 // Calculator App Main class
 /**
- * Write your description here.
- *
- * @author
- * @version (a version number or a date)
+ * Initialises the program.
  */
 public class Main extends Application {
     
+    /** Starts the program when launching from command line*/
     public static void main( String args[] ){
         // The main method only gets used when launching from the command line
         // launch initialises the system and then calls start
         // In BlueJ, BlueJ calls start itself
         launch(args);
     }
-    
+    /** Initialises the program. */
     @Override
     public void start(Stage window){
         

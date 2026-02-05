@@ -1,8 +1,10 @@
 #BlueJ class context
 comment0.target=Main
-comment0.text=\r\n\ Write\ your\ description\ here.\r\n\r\n\ @author\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Initialises\ the\ program.\r\n
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
+comment1.text=Starts\ the\ program\ when\ launching\ from\ command\ line
 comment2.params=window
 comment2.target=void\ start(javafx.stage.Stage)
+comment2.text=Initialises\ the\ program.
 numComments=3

@@ -4,7 +4,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 /**
- * Write a description of JavaFX class Calculator here.
+ * Defines the front end GUI for the program.
  *
  * @author (your name)
  * @version (a version number or a date)
@@ -26,6 +26,7 @@ public class View {
     private GridPane   gridPane;      // main layout manager grid
     private TilePane   buttonPane;    // tiled area for operator (+ - X ÷) buttons
     
+    /** Initialises the scene */
     public void start(Stage window){
         window.setTitle("Simple Calculator");
         
@@ -103,12 +104,13 @@ public class View {
         }
     }
     
-    //This method is called by the Model to update the UI.
+    /** Loads the result of a calculation into the javafx scene. */
     void update(String currentOperator, String resultStatus, String result){       
         laCurrentOperator.setText(currentOperator);
         laResultStatus.setText(resultStatus);
         tfResult.setText(result);
     }
+    /** Loads a history entry into the javafx scene.  */
     void history_update(int num1, int num2, int result, String operator){
         tfNum1.setText(num1 + "");
         tfNum2.setText(num2 + "");

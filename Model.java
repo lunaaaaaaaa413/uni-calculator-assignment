@@ -1,17 +1,12 @@
-
-/**
- * Write a description of class Model here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
+/**
+ * Handles the backend data and logic of the program.
+ */
 public class Model {
     
     Calculation calculation; // Model uses the business class Calculation - which does the math
@@ -23,7 +18,7 @@ public class Model {
     private String resultStatus;    // Status indicator (e.g., "Result will appear below" or "=") for the View
     private String result;          // Calculation Result or failure message for the View
 
-    // A nested class used to store the history of calculations
+    /** Stores the history of calculations. */
     class History {
         private ArrayList<Integer> firstNum = new ArrayList<Integer>();
         private ArrayList<Integer> secondNum = new ArrayList<Integer>();
@@ -34,11 +29,12 @@ public class Model {
 
         int counter = 0; // this variable is used to track where in history we are when the user is scrubbing through their history
         
-        // in most cases we want to save to disk so i've used method overloading to make that the default option
+        /** Method overload of new_entry() that passes true on writeToDisk */
         void new_entry(int one, int two, int result, String operator){
-            new_entry(one, two, result, operator, true); 
+            // We always want to write to disk unless we're using this method to import from history.txt so we use an overload to make that the default behaviour.
+            new_entry(one, two, result, operator, true); //TODO: if some error with the histfile happens, use this overload to not write to disk
         }
-        
+        /** Creates a new history entry. */
         void new_entry(int one, int two, int result, String operator, boolean writeToDisk){
             this.firstNum.add(one);
             this.secondNum.add(two);
@@ -58,7 +54,9 @@ public class Model {
                 }
             }
         }
-
+        /** 
+         * Loads the last (on i = -1) or next (on i = 1) history entry and calls history_update()
+         * */
         void navigate_history(int i){
             if (i == 1){
                 if (counter < firstNum.size() - 1) {
@@ -73,6 +71,7 @@ public class Model {
             }
         }
 
+        /** Checks if history.txt exists and creates it if it does not. */
         public History(){
             // create history.txt if it does not exist
             File h = new File("history.txt");
@@ -83,22 +82,25 @@ public class Model {
                         String[] split = data.split(" ");
                         new_entry(Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]), split[3], false);
                     }
-                    counter++;
+                    counter++; // We overset the counter by one so when someone steps back in history they see their last calculation.
                 } catch(Exception e) {
-
+                    histFileExists = false; // if the history file exists but we can't access it we can just pretend it doesn't exist
                 }
             } else{
                 try{
                     h.createNewFile();
                 } catch(Exception e) {
-                    boolean histFileExists = false;
+                    histFileExists = false;
                 }
             }
         }
     }
+
     History History = new History();
 
+    /** Adds two numbers together with the calculation class and calls update(). */
     void doAdd(){
+
         currentOperator = "+";
         try{
             int num1 = Integer.parseInt(view.tfNum1.getText().trim());
@@ -114,6 +116,8 @@ public class Model {
         }
         update();
     }
+    
+    /** Subtracts one number from another with the calculation class and calls update(). */
     void doSub(){
         currentOperator = "-";
         try{
@@ -130,6 +134,8 @@ public class Model {
         }
         update();
     }
+    
+    /** Multiplies one number by another with the calculation class and calls update(). */
     void doMul(){
         currentOperator = "×";
         try{
@@ -146,6 +152,8 @@ public class Model {
         }
         update();
     }
+    
+    /** Divides one number by another with the calculation class and calls update(). */
     void dodiv(){
         currentOperator = "÷";
         try{
@@ -162,6 +170,8 @@ public class Model {
         }
         update();
     }
+    
+    /** Calculates the remainder after one number is divided by another with the calculation class and calls update(). */
     void doModulo(){
         currentOperator = "%";
         try{
@@ -179,16 +189,18 @@ public class Model {
         update();
     }
     
+    /** Informs the user that an operation they want to use hasn't been implemented yet */
     void unimplementedOperation(String currentOperator){
         resultStatus = "Result will appear below";
         result = currentOperator + " not implemented yet";
         update();
     }
     
-    // Notifies the View to refresh the UI; Called by the Model itself when data changes.
+    // Loads the result of a calculation into the javafx scene.
     private void update(){
         view.update(currentOperator,resultStatus, result);
     }
+    // Loads a history entry into the javafx scene. 
     private void history_update(int num1, int num2, int result, String operator){
         view.history_update(num1, num2, result, operator);
     }

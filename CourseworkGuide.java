@@ -17,15 +17,15 @@
  * your project code:
  * 
  * <ul>
- * <li>control statements (loops, if etc)</li>
- * <li>using classes, objects and methods</li>
+ * <li>control statements (loops, if etc)</li> done
+ * <li>using classes, objects and methods</li> done
  * <li>inheritance</li>
- * <li>encapsulation and protected variables</li>
+ * <li>encapsulation and protected variables</li> done
  * <li>using collection classes (TreeMap)</li>
  * <li>JUnit tests</li>
- * <li>Javadoc comments and compiled documentation</li>
- * <li>code comments</li>
- * <li>using file IO for persistent storage</li>
+ * <li>Javadoc comments and compiled documentation</li> done i think
+ * <li>code comments</li> done
+ * <li>using file IO for persistent storage</li> done
  * </ul>
  
  * 
