@@ -83,6 +83,7 @@ public class Model {
                         String[] split = data.split(" ");
                         new_entry(Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]), split[3], false);
                     }
+                    counter++;
                 } catch(Exception e) {
 
                 }
