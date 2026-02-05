@@ -1,3 +1,5 @@
+
+
 public class Calculation {
     public int add(int a, int b) {
         return a + b;
@@ -15,5 +17,7 @@ public class Calculation {
         return a / b;
     }
 
-    public int mod(int a, int b) { return a % b; }
+    public int mod(int a, int b) { 
+        return a % b;
+     }
 }
