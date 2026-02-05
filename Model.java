@@ -7,6 +7,8 @@
  */
 
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
 
 public class Model {
     
@@ -18,16 +20,15 @@ public class Model {
     private String currentOperator; // Current operator to display in the View
     private String resultStatus;    // Status indicator (e.g., "Result will appear below" or "=") for the View
     private String result;          // Calculation Result or failure message for the View
-    private String historyFirstNum = "null"; // This variable will only be changed from null if the user is scrubbing through their history, if it's null we know they aren't
-    private String historySecondNum = "null";
-    private String historyResult = "null";
 
     // A nested class used to store the history of calculations
     class History {
-        ArrayList<Integer> firstNum = new ArrayList<Integer>();
-        ArrayList<Integer> secondNum = new ArrayList<Integer>();
-        ArrayList<String> operator = new ArrayList<String>();
-        ArrayList<Integer> result = new ArrayList<Integer>();
+        private ArrayList<Integer> firstNum = new ArrayList<Integer>();
+        private ArrayList<Integer> secondNum = new ArrayList<Integer>();
+        private ArrayList<String> operator = new ArrayList<String>();
+        private ArrayList<Integer> result = new ArrayList<Integer>();
+
+        boolean histFileExists = true;
 
         int counter = 0; // this variable is used to track where in history we are when the user is scrubbing through their history
         void new_entry(int one, int two, int result, String operator){
@@ -37,6 +38,14 @@ public class Model {
             this.operator.add(operator);
             // Reset the user to the present if they are looking through their history
             counter = firstNum.size() - 1; // we subtract 1 here and on line 41 because the size function counts from 1 but counter needs to be a valid index and indexes count from 0
+
+            try {
+                FileWriter histFile = new FileWriter("history.txt", true); // the true here stops filewriter from overwriting the content in history.txt
+                histFile.write(one + two + result + operator + "\n");
+                histFile.close();
+            } catch (Exception e) {
+                // TODO: what do i put here
+            }
         }
 
         void navigate_history(int i){
@@ -52,8 +61,20 @@ public class Model {
                 }
             }
         }
+
+        public History(){
+            // create history.txt if it does not exist
+            File h = new File("history.txt");
+            if (!h.exists()){
+                try{
+                    h.createNewFile();
+                } catch(Exception e) {
+                    boolean histFileExists = false;
+                }
+            }
+        }
     }
-    History History = this.new History();
+    History History = new History();
 
     void doAdd(){
         currentOperator = "+";
