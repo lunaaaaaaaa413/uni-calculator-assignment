@@ -63,7 +63,7 @@ public class View {
         for(String text: operatorSymbols){
             Button btn = new Button(text);
             buttonPane.getChildren().add(btn);
-            btn.setOnAction(this::operatorButtonClick); //Sets the action to be performed (event handler) when the button is clicked.
+            btn.setOnAction(this::ButtonClick); //Sets the action to be performed (event handler) when the button is clicked.
         } //this:: buttonClick - Refers to the current object of the class (View here) that defines buttonClick.
         
         gridPane.add(buttonPane,1,6);
@@ -72,11 +72,11 @@ public class View {
         
         Button historyBackwards = new Button("<");
         historyButtonPane.getChildren().add(historyBackwards);
-        historyBackwards.setOnAction(this::historyButtonClick);
+        historyBackwards.setOnAction(this::ButtonClick);
         
         Button historyForwards = new Button(">");
         historyButtonPane.getChildren().add(historyForwards);
-        historyForwards.setOnAction(this::historyButtonClick);
+        historyForwards.setOnAction(this::ButtonClick);
         
         gridPane.add(historyButtonPane,1,7);
 
@@ -86,21 +86,15 @@ public class View {
         window.show();
     }
     
-    private void historyButtonClick(ActionEvent event){
-        Button btn = (Button) event.getSource();
-        if (controller != null) {
-            if (btn.getText() == ">"){controller.historyForwards(); }
-            else{controller.historyBackwards();}
-        }
-    }
+
     // This method is called when a button is clicked
     // It fetches the text on the button and passes it to the controller's doCalculate method
-    private void operatorButtonClick(ActionEvent event){
+    private void ButtonClick(ActionEvent event){
         // this line asks the event to provide the actual Button object that was clicked
         Button btn = (Button) event.getSource();
         if (controller != null){
             String text = btn.getText();   // get the button text
-            controller.doCalculate(text);
+            controller.doAction(text);
         }
     }
     

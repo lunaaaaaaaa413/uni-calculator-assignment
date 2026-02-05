@@ -8,9 +8,9 @@ public class Controller{
     
     // Bridge method: called by the View to delegate respomsibilites to Model.
     /**
-     * Tells the model to run a calculation.
+     * Tells the model about a button press.
      */
-    void doCalculate(String action){
+    void doAction(String action){
         
         switch(action){
             case "+":
@@ -28,7 +28,12 @@ public class Controller{
             case "%":
                 model.doModulo();
                 break;
-            
+            case ">":
+                model.History.navigate_history(1);
+                break;
+            case "<":
+                model.History.navigate_history(-1);
+                break;
             //TODO:
             //add your code to make other buton works ("-","X","÷")
             
@@ -36,7 +41,7 @@ public class Controller{
         }
     }
     /**Tells the model to step forwards in history */
-    void historyForwards(){model.History.navigate_history(1);}
+    // void historyForwards(){model.History.navigate_history(1);}
     /**Tells the model to step backwards in history */
-    void historyBackwards(){model.History.navigate_history(-1);}
+    // void historyBackwards(){model.History.navigate_history(-1);}
 }
